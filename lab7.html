@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Registration Form</title>
+
+<style>
+body{
+    font-family: Arial;
+    text-align:left;
+    margin-top:40px;
+}
+
+button{
+    padding:8px 15px;
+    margin:5px;
+    cursor:pointer;
+}
+
+ul{
+    list-style-type:none;
+}
+</style>
+
+<script>
+
+function validateForm(){
+    var name=document.getElementById("name").value.trim();
+    var email=document.getElementById("email").value.trim();
+    var emailPattern=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if(name===""){
+        alert("Name cannot be empty");
+        return false;
+    }
+
+    if(email===""){
+        alert("Email cannot be empty");
+        return false;
+    }
+
+    if(!emailPattern.test(email)){
+        alert("Enter valid email");
+        return false;
+    }
+
+    alert("Form Submitted Successfully!");
+    return true;
+}
+
+function changeHeading(){
+    document.getElementById("heading").innerHTML="NEET Form";
+}
+
+function changeBackground(){
+    document.body.style.backgroundColor =
+    "#" + Math.floor(Math.random()*16777215).toString(16)    
+}
+
+function addGraduation(){
+    let input=document.getElementById("gradInput").value;
+
+    if(input!==""){
+        let li=document.createElement("li");
+        li.textContent=input;
+
+        document.getElementById("gradList").appendChild(li);
+
+        document.getElementById("gradInput").value="";
+    }
+}
+
+</script>
+
+</head>
+
+<body>
+
+<h1 id="heading">Registration Form</h1>
+
+<button onclick="changeHeading()">Change Heading</button>
+<button onclick="changeBackground()">Change Background Colour</button>
+
+<form onsubmit="return validateForm()">
+
+<label>Name:</label><br>
+<input type="text" id="name" placeholder="Enter Name"><br><br>
+
+<label>Email:</label><br>
+<input type="email" id="email" placeholder="Enter Email"><br><br>
+
+<label>Gender:</label><br>
+<input type="radio" name="gender"> Male
+<input type="radio" name="gender"> Female
+<input type="radio" name="gender"> Other
+<br><br>
+
+<h3>Add Graduation</h3>
+
+<input type="text" id="gradInput" placeholder="Enter Graduation">
+<button type="button" onclick="addGraduation()">Add</button>
+
+<ul id="gradList"></ul>
+
+<br>
+
+<label>Date of Birth:</label><br>
+<input type="date"><br><br>
+
+<input type="submit" value="Submit">
+
+</form>
+
+</body>
+</html>
